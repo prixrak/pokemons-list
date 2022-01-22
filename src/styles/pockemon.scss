@@ -1,0 +1,33 @@
+
+.pockemons {
+  &__list {
+    height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);  
+    column-gap: 20px;
+    row-gap: 20px;
+    justify-content: center;
+  }
+  &__item {
+    border: 2px black solid;
+  }
+  &__btn {
+    display: block;
+    height: 60px;
+    grid-column: 1/-1;
+    width: 100%;
+    cursor: pointer;
+    margin: 0 auto;
+    background: rgb(3, 161, 3);
+    border: 0px;
+    border-radius: 10px;
+    color: white;
+    transition: all 0.3s linear;
+    font-size: 16px;
+    &:hover {
+      transform: scale(1.01);
+      background: rgb(189, 70, 70);
+      font-weight: 500;
+    }
+  }
+}

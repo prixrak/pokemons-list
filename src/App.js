@@ -1,9 +1,11 @@
 import React from 'react';
+import Pockemons from './pages/Pockemons';
+import './styles/app.scss';
 
 const App = () => {
   return (
-    <div>
-      
+    <div className='app'>
+      <Pockemons />
     </div>
   );
 };
