@@ -5,7 +5,7 @@ import pockemonsStore from '../store/PockemonsStore';
 import PockemonTypes from './PockemonTypes';
 import PokcemonStat from './PokcemonStat';
 
-const PockemonInfo = observer(({onClick}) => {
+const PockemonInfoAdaptive = observer(({onClick}) => {
   const [pockemon, setPockemon] = useState(null);
 
   useEffect(() => {
@@ -14,10 +14,8 @@ const PockemonInfo = observer(({onClick}) => {
     setPockemon(pockemon);
   }, [pockemonsStore.selectedPockemon])
 
-
-
   return (
-    <aside className='pockemonInfo' onClick={onClick}>
+    <div className='pockemons__item adaptive' onClick={onClick}>
       <img alt='pockemonInfo img' className='pockemonInfo__img' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pockemon?.id}.png`} />
       <div className='pockemonInfo__title'>{pockemon?.name}</div>
 
@@ -36,8 +34,8 @@ const PockemonInfo = observer(({onClick}) => {
         <PokcemonStat title={'Weight'} value={pockemon?.weight} />
         <PokcemonStat title={'Total moves'} value={pockemon?.moves.length} />
       </div>
-    </aside> 
+    </div> 
   );
 });
 
-export default PockemonInfo;
+export default PockemonInfoAdaptive;

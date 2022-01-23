@@ -3,17 +3,21 @@ import { makeAutoObservable } from 'mobx';
 class PockemonsStore {
   pockemons = [];
   selectedPockemon = null;
-  pockemonInfoElement = null;
   offset = 0;
   limit = 12;
   pockemonsInfos = [];
   selectedType = null;
   filteredPockemons = [];
+  winSize = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
+  setWinSize(size) {
+    this.winSize = size;
+  }
+  
   setFilteredPockemons(pockemons) {
     this.filteredPockemons = pockemons;
   }

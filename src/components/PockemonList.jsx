@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pockemon from './Pockemon';
 import '../styles/pockemons.scss';
 import Button from './UI/Button';
@@ -7,7 +7,6 @@ import { observer } from 'mobx-react-lite';
 import { fetchPockemons } from './../http/fetchPockemons';
 
 const PockemonList = observer(({pockemons}) => {
-
   const loadMore = async () => {
     pockemonsStore.setOffset(pockemonsStore.offset + pockemonsStore.limit);
     const pockemons = await fetchPockemons(pockemonsStore.offset);
@@ -16,14 +15,8 @@ const PockemonList = observer(({pockemons}) => {
 
   return (
     <div className='pockemons__list'>
-      {pockemons.map(pockemon =>
-        <Pockemon  key={pockemon.name} pockemon={pockemon} onClick={(e) => {
-          if(pockemonsStore.selectedPockemon && pockemonsStore?.selectedPockemon?.name === pockemon.name) {
-            pockemonsStore.setSelectedPockemon(null);
-            return;
-          }
-          pockemonsStore.setSelectedPockemon(pockemon);
-        }}/>
+      {pockemons.map(pockemon => 
+        <Pockemon  key={pockemon.name} pockemon={pockemon} />
       )}
       <Button className='pockemons__btn' onClick={loadMore}>Load more</Button>
     </div>

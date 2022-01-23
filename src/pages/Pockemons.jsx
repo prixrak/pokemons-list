@@ -21,7 +21,6 @@ const Pockemons = observer(() => {
 
   useEffect( () => {
     pockemonsStore.setFilteredPockemons(pockemonsStore.pockemons);
-    console.log("ya")
   }, [pockemonsStore.pockemons]);
 
   if(isFetching) {
