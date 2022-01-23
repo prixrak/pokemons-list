@@ -1,0 +1,96 @@
+@keyframes vis {
+  from {
+    width: 140px;
+    opacity: 0;
+  }
+  to {
+    width: 270px;
+    opacity: 1;
+  }
+}
+
+@keyframes visHidden {
+  from {
+    width: 270px;
+    opacity: 1;
+  }
+  to {
+    width: 0px;
+    opacity: 0;
+  }
+}
+
+.pockemonInfo {
+  animation: vis 1s forwards;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+  height: 88vh;
+  margin-right: 20px;
+  float: right;
+  font-size: 24px;
+  border: 2px black solid;
+  border-radius: 10px;
+  transition: 1s;
+  box-shadow: 0 0 4px 0.2px gray; 
+  &__img {
+    display: block;
+    height: 250px;
+    display: block;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+  &__title {
+    font-size: 40px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  &__types {
+    margin-left: 4px;
+    list-style-type: none;
+    display: flex;
+    text-transform: capitalize;
+  }
+  &__type {
+    text-align: center;
+    padding: 0 4px 0 4px;
+    margin-right: 6px;
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 20px;
+    background: rgb(238, 12, 151);
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  &__stats {
+    margin: 0 auto;
+    padding: 5px 20px 5px 20px;
+    width: 80%;
+    border: 1px black solid;
+    box-shadow: 0 0 4px 1px grey;
+    border-radius: 10px;
+  }
+  &__stat {
+    height: 32px;
+    display: flex;
+    align-items: center;
+  }
+  &__titleStat {
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 32px;
+  }
+  &__value {
+    margin-left: 4px;
+    font-size: 34px;
+    color: rgb(119, 11, 44);
+    text-align: center;
+  }
+}
+
+.pockemonInfo-novis {
+  animation: visHidden 1s;
+}

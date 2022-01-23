@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PockemonList from '../components/PockemonList';
 import { fetchPockemons } from './../http/fetchPockemons';
 import { useFetching } from './../hooks/useFetching';
-import '../styles/app.scss';
-import '../styles/pockemon.scss';
+import '../styles/pockemons.scss';
+import { observer } from 'mobx-react-lite';
+import pockemonsStore from '../store/PockemonsStore';
+const Pockemons = observer(() => {
 
-import Button from './../components/UI/Button';
-
-const Pockemons = () => {
-  const [pockemons, setPockemons] = useState([]);
-
+  const pockemonsRef = useRef(null);
   // use of hook
   const [fetchPockemonsHook, isFetching, isFetchingError] = useFetching(async () => {
     const pockemons = await fetchPockemons();
-    setPockemons(pockemons);
+    pockemonsStore.setPockemons(pockemons);
   });
 
   useEffect( () => {
@@ -25,16 +23,14 @@ const Pockemons = () => {
   }
 
   return (
-    <div className='container'>
-      <div className='pockemons'>
-        { pockemons.length !== 0 && 
-            <>
-              <PockemonList pockemons={pockemons} />
-            </>
+    <>
+      <div ref={pockemonsRef} className='pockemons'>
+        { pockemonsStore.pockemons.length !== 0 && 
+          <PockemonList pockemons={pockemonsStore.pockemons} />
         }
       </div>
-    </div>
+    </>
   );
-};
+});
 
 export default Pockemons;
