@@ -17,6 +17,11 @@ const Pockemons = observer(() => {
   useEffect( () => {
     fetchPockemonsHook();
   }, []);
+  
+  useEffect( () => {
+    pockemonsStore.setFilteredPockemons(pockemonsStore.pockemons);
+    console.log("ya")
+  }, [pockemonsStore.pockemons]);
 
   if(isFetching) {
     return <div>Loading</div>
@@ -25,8 +30,8 @@ const Pockemons = observer(() => {
   return (
     <>
       <div ref={pockemonsRef} className='pockemons'>
-        { pockemonsStore.pockemons.length !== 0 && 
-          <PockemonList pockemons={pockemonsStore.pockemons} />
+        { pockemonsStore.filteredPockemons.length !== 0 && 
+          <PockemonList pockemons={pockemonsStore.filteredPockemons} />
         }
       </div>
     </>

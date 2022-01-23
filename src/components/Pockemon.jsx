@@ -9,10 +9,15 @@ const Pockemon = ({pockemon, onClick}) => {
   const [pockemonInfo, setPockemonInfo] = useState(null);
 
   const fetchPockemonHook = async () => {
-    const pockemonInfo = await fetchPockemonByUrl(pockemon.url);
+    let pockemonInfo = null;
+    if(pockemonsStore.pockemonsInfos.some(pock => pock.name === pockemon.name))
+      pockemonInfo = pockemonsStore.pockemonsInfos.filter(pock => pock.name === pockemon.name)[0];
+    else {
+      pockemonInfo = await fetchPockemonByUrl(pockemon.url);
+      pockemonsStore.setPockemonsInfos([...pockemonsStore.pockemonsInfos, pockemonInfo]);
+      console.log("fetch")
+    }
     setPockemonInfo(pockemonInfo);
-    // set pockemons detail info in store to filter
-    pockemonsStore.setPockemonsInfos([...pockemonsStore.pockemonsInfos, pockemonInfo]);
   };
 
   useEffect(() => {
@@ -21,7 +26,7 @@ const Pockemon = ({pockemon, onClick}) => {
 
   return (
     <div className='pockemons__item' onClick={onClick}>
-      <img alt='pokemon img' className='pockemons__img' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pockemonInfo?.id}.png`} />
+      {pockemonInfo?.id && <img alt='pokemon img' className='pockemons__img' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pockemonInfo?.id}.png`} />}
       <div className='pockemons__title'>{pockemon.name}</div>
       <PockemonTypes pockemon={pockemonInfo} />
     </div>

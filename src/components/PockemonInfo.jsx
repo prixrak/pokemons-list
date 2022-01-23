@@ -2,7 +2,6 @@ import { observer } from 'mobx-react-lite';
 import React, { useRef, useEffect, useState } from 'react';
 import '../styles/pockemonInfo.scss';
 import pockemonsStore from '../store/PockemonsStore';
-import { fetchPockemonByUrl } from '../http/fetchPockemonByUrl';
 import PockemonTypes from './PockemonTypes';
 import PokcemonStat from './PokcemonStat';
 
@@ -19,8 +18,6 @@ const PockemonInfo = observer(() => {
   useEffect(() => {
     pockemonsStore.setPockemonInfoElement(pockemonInfoRef.current);
   }, []);
-
-  console.log(pockemonsStore.pockemonsInfos)
 
   return (
     <aside className='pockemonInfo' ref={pockemonInfoRef}>

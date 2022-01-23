@@ -7,9 +7,19 @@ class PockemonsStore {
   offset = 0;
   limit = 12;
   pockemonsInfos = [];
+  selectedType = null;
+  filteredPockemons = [];
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  setFilteredPockemons(pockemons) {
+    this.filteredPockemons = pockemons;
+  }
+
+  setSelectedType(type) {
+    this.selectedType = type;
   }
 
   setOffset(offset) {

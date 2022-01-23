@@ -13,7 +13,7 @@ const PockemonList = observer(({pockemons}) => {
     const pockemons = await fetchPockemons(pockemonsStore.offset);
     pockemonsStore.setPockemons([...pockemonsStore.pockemons, ...pockemons]);
   }
-  
+
   return (
     <div className='pockemons__list'>
       {pockemons.map(pockemon =>
