@@ -3,6 +3,7 @@ import { fetchPockemonByUrl } from '../http/fetchPockemonByUrl';
 import pockemonsStore from '../store/PockemonsStore';
 import '../styles/pockemons.scss';
 import PockemonTypes from './PockemonTypes';
+import Loader from './Loader';
 
 const Pockemon = ({pockemon, onClick}) => {
   // use of hook
@@ -26,7 +27,9 @@ const Pockemon = ({pockemon, onClick}) => {
 
   return (
     <div className='pockemons__item' onClick={onClick}>
-      {pockemonInfo?.id && <img alt='pokemon img' className='pockemons__img' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pockemonInfo?.id}.png`} />}
+      {pockemonInfo?.id 
+        ? <img alt='pokemon img' className='pockemons__img' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pockemonInfo?.id}.png`} />
+        : <Loader />}
       <div className='pockemons__title'>{pockemon.name}</div>
       <PockemonTypes pockemon={pockemonInfo} />
     </div>

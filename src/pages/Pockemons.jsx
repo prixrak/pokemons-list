@@ -5,6 +5,7 @@ import { useFetching } from './../hooks/useFetching';
 import '../styles/pockemons.scss';
 import { observer } from 'mobx-react-lite';
 import pockemonsStore from '../store/PockemonsStore';
+import Loader from './../components/Loader';
 const Pockemons = observer(() => {
 
   const pockemonsRef = useRef(null);
@@ -17,14 +18,14 @@ const Pockemons = observer(() => {
   useEffect( () => {
     fetchPockemonsHook();
   }, []);
-  
+
   useEffect( () => {
     pockemonsStore.setFilteredPockemons(pockemonsStore.pockemons);
     console.log("ya")
   }, [pockemonsStore.pockemons]);
 
   if(isFetching) {
-    return <div>Loading</div>
+    return <Loader />
   }
 
   return (

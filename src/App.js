@@ -5,9 +5,8 @@ import './styles/app.scss';
 import { observer } from 'mobx-react-lite';
 import PockemonInfo from './components/PockemonInfo';
 import pockemonsStore from './store/PockemonsStore';
-const App = observer(() => {
-  
 
+const App = observer(() => {
   return (
     <div className='app'>
       <TopBar />
